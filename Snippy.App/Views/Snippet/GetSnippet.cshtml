@@ -1,0 +1,67 @@
+﻿@using Snippy.App.Models.ViewModels.Snippets
+@model SnippetViewModel
+@{
+    ViewBag.Title = "GetSnippet";
+}
+<h2>
+    @Html.ActionLink(Model.Language.Name, "GetLanguage", "Language", new { id = Model.Language.Id }, htmlAttributes: new { @class = "btn btn-success" })
+    @Model.Title
+</h2>
+@if (User.Identity.Name == Model.AuthorUsername)
+{
+    @Html.ActionLink("Edit", "Edit", "Snippet", new { id = Model.Id }, new { @class = "btn btn-warning" })
+}
+<p>by <span class="glyphicon glyphicon-user"></span> @Model.AuthorUsername on @Model.CreatedAt</p>
+<p class="labels">Labels: @Html.DisplayFor(m => m.Labels)</p>
+<p>@Model.Description</p>
+<div class="thumbnail">
+    <pre>
+        @Model.Code
+    </pre>
+</div>
+<h3>Comments:</h3>
+<p id="error"></p>
+@if (User.Identity.IsAuthenticated)
+{
+    using (Ajax.BeginForm("Post", "Comment", new { id = Model.Id }, new AjaxOptions() 
+    {
+        HttpMethod = "POST",
+        OnSuccess = "onCommentSuccess",
+        OnFailure = "onCommentFailure"
+    }, new { @class = "form-group" }))
+    {
+        @Html.AntiForgeryToken()
+        <textarea class="form-control content-input" name="content" placeholder="Write a public comment"></textarea>
+        <input type="submit" value="Add comment" class="btn btn-primary" />
+    }
+}
+
+<div id="comments">
+    @if (Model.Comments.Any())
+    {
+        @Html.DisplayFor(m => m.Comments)
+    }
+    else
+    {
+        <p>There are no comments right now.</p>
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery-ajax")
+
+    <script>
+        function clearCommentField() {
+            $('.content-input').val("");
+        }
+
+        function onCommentSuccess(data) {
+            $('#comments').prepend(data);
+            clearCommentField();
+        }
+
+        function onBetFailure(error) {
+            $('#error').prepend(error);
+        }
+    </script>
+}

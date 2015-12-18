@@ -1,0 +1,8 @@
+﻿@using Snippy.App.Models.ViewModels.Labels
+@model LabelViewModel
+@{
+    ViewBag.Title = "GetLabel";
+}
+
+<h2>All snippet with label @Html.ActionLink(Model.Text, "GetLabel", "Label", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-info"})</h2>
+@Html.DisplayFor(m => m.Snippets)

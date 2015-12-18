@@ -1,0 +1,6 @@
+﻿@using Snippy.App.Models.ViewModels.Labels
+@model LabelBasicInfoViewModel
+
+<h4 class="labels">
+    @Html.ActionLink(Model.Text, "GetLabel", "Label", new { id = Model.Id }, htmlAttributes: new { @class = "label label-primary" })
+</h4>

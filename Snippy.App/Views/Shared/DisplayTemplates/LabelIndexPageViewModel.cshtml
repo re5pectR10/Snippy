@@ -1,0 +1,4 @@
+﻿@using Snippy.App.Models.ViewModels.Labels
+@model LabelIndexPageViewModel
+
+<a class="list-group-item" href="@Url.Action("GetLabel", "Label", new { id = Model.Id })">@Model.Text <span class="badge">@Model.SnippetsCount</span></a>

@@ -1,0 +1,15 @@
+﻿@using Snippy.App.Models.ViewModels.Snippets
+@model IEnumerable<SnippetBasicInfoViewModel>
+@{
+    ViewBag.Title = "My Snippets";
+}
+
+<h2>My Snippets</h2>
+@if(Model.Any())
+{
+    @Html.DisplayForModel()
+}
+else
+{
+    <p>You have no snippets. You can @Html.ActionLink("create", "Add" , "Snippet") one now.</p>
+}

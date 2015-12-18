@@ -1,0 +1,17 @@
+﻿@using Snippy.App.Models
+@model SnippetInputModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit snippet @Model.Title</h2>
+@using (Html.BeginForm("Edit", "Snippet", new { id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.EditorForModel()
+    <input type="submit" name="name" value="Edit" class="btn btn-lg btn-success" />
+    @Html.ActionLink("Cancel", "GetSnippet", "Snippet", new { id = Model.Id }, new { @class = "btn btn-default" })
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

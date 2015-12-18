@@ -1,0 +1,8 @@
+﻿@using Snippy.App.Models.ViewModels.Comments
+@model CommentWithSnippetViewModel
+
+<div class="thumbnail">
+    <p>@Model.Content</p>
+    <p><span class="glyphicon glyphicon-user"></span>@Model.AuthorUsername on @Model.CreatedAt</p>
+    <p>on snippet @Html.ActionLink(Model.Snippet.Title, "GetSnippet", "Snippet", new { id = Model.Snippet.Id }, null)</p>
+</div>

@@ -1,0 +1,12 @@
+﻿@using Snippy.App.Models.ViewModels.Comments
+@model CommentBasicInfoViewModel
+
+<div class="thumbnail">
+<p>@Model.Content 
+    @if (User.Identity.Name == Model.AuthorUsername)
+    {
+        <a class="pull-right" href="@Url.Action("Remove", "Comment", new { id = Model.Id })"><span class="glyphicon glyphicon-remove"></span></a>
+    }
+</p>
+<p><span class="glyphicon glyphicon-user"></span>@Model.AuthorUsername on @Model.CreatedAt</p>
+</div>

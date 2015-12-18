@@ -1,0 +1,11 @@
+﻿@using Snippy.App.Models.ViewModels.Snippets
+@using Snippy.App.HtmlHelpers
+@model IEnumerable<SnippetBasicInfoViewModel>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All Snippets</h2>
+
+@Html.DisplayForModel()
+@Html.Pagination((int)ViewBag.currentPage, (int)ViewBag.allPages, "All", "Snippet")

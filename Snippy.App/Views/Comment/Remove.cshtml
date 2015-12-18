@@ -1,0 +1,11 @@
+﻿@using Snippy.App.Models.ViewModels.Comments
+@model CommentWithSnippetViewModel
+@{
+    ViewBag.Title = "Remove";
+}
+
+<h2>Delete Comment</h2>
+<h4>Are you sure?</h4>
+@Html.DisplayForModel()
+@Html.ActionLink("Delete", "Delete", "Comment", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+@Html.ActionLink("Cancel", "GetSnippet", "Snippet", new { id = Model.Snippet.Id }, htmlAttributes: new { @class = "btn btn-default" })
